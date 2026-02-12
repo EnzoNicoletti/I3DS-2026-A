@@ -7,10 +7,6 @@ function App() {
 
 <Perfil />
 
-       <div className="perfil">
-       <img src="https://placehold.co/200x200" alt="perfil" />
-       </div>
-       <p>@Seu Nome</p>
        <div className="switch">
         Botão Switch
        </div>
