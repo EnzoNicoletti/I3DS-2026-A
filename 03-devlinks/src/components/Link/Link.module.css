@@ -11,6 +11,7 @@ li a{
     background-color: var(--surface-color);
     font-weight: bold;
     text-decoration: none;
+    color: #000;
 }
 
 li a:hover{

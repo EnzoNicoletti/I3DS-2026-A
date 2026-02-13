@@ -9,6 +9,8 @@
 }
 
 #App {
+    font-family: "inter", sans-serif;
+    color: var(--text-color);
     height: 100vh;
     background-image: var(--bg-url);
     background-repeat: no-repeat;
