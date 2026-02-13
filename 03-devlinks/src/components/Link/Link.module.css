@@ -1,0 +1,19 @@
+li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 24px;
+    /* border: 1px solid var(--stroke-color); */
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--stroke-color);
+    border-radius: 8px;
+    background-color: var(--surface-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: var(--surface-color-hover);
+    border-color: var(--text-color);
+}
