@@ -1,28 +1,61 @@
 :root{
+    --bg-url: url(./assets/bg-desktop.jpg);
+    --text-color: #fff;
+    --stroke-color: rgba(255,255,255,0.5);
+    --surface-color: rgba(255,255,255,0.1);
+    --surface-color-hover: rgba(255,255,255,0.4);
+    --switch-bg-url: url(./assets/MoonStars.svg);
+    --highlight-color: rgba(255,255,255,0.2);
+}
+
+.light {
     --bg-url: url(./assets/bg-desktop-light.jpg);
     --text-color: #000;
     --stroke-color: rgba(0,0,0,0.5);
     --surface-color: rgba(0,0,0,0.1);
-    --stroke-color-hover: rgba(0,0,0,0.4);
+    --surface-color-hover: rgba(0,0,0,0.4);
     --switch-bg-url: url(./assets/Sun.svg);
     --highlight-color: rgba(0,0,0,0.2);
 }
 
 #App {
-    font-family: "inter", sans-serif;
-    color: var(--text-color);
     height: 100vh;
+    width: 100%;
     background-image: var(--bg-url);
-    background-repeat: no-repeat;
     background-position: top center;
+    background-repeat: no-repeat;
     background-size: cover;
     color: var(--text-color);
-}
-
-#Link ul {
-    list-style: none;
+    font-family: "inter", sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 24px;
+    justify-content: center;
+    gap: 20px;
+    transition: background 0.2s;
+}
+
+#Link {
+    display: flex;
+    justify-content: center;
+    
+    ul{
+        width: 100%;
+        max-width: 588px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+    }
+}
+
+#SocialLinks {
+    display: flex;
+    justify-content: center;
+   align-items: center;
+   gap: 30px;
+    & a {
+        color: var(--text-color);
+        font-size: x-large;
+    }
 }

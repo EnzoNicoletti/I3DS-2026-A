@@ -12,6 +12,7 @@ li a{
     font-weight: bold;
     text-decoration: none;
     color: #000;
+    transition: background 0.2s;
 }
 
 li a:hover{
