@@ -23,7 +23,7 @@ const MovieDescription = (props) => {
 
           <div className={styles.movieType}>
             <div>
-              <img src="/favicon.png" alt="" />
+              <img src="/Davylogo.png" alt="" />
               {movieDesc.Type}
               <h1>{movieDesc.Title}</h1>
               <a
