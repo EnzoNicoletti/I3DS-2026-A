@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+import todos from "./assets/TODOS.svg"
 import logo from "./assets/DAVYFLIX.png";
 import lupa from "./assets/search.svg";
 
 import Rodape from "./components/Rodape/Rodape";
 import MovieCard from "./components/MovieCard/MovieCard";
+import sun from "./assets/Sun.svg";
+import moon from "./assets/MoonStars.svg";
 
 const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -31,11 +35,14 @@ const App = () => {
   }, []);
 
   return (
-    <div id="App">
+    <div id="App" className={darkMode ? "dark" : ""}>
+      <button id="trocarTema" onClick={() => setDarkMode(!darkMode)}>
+        <img src={darkMode ? moon : sun} alt="icone do tema" style={{ display:"flex", alignSelf: "center", width: "30px" }}/>
+      </button>
       <img
         id="Logo"
         src={logo}
-        alt="Logotipo do serviço de streaming Devflix, com letras vermelhas e fundo preto, promovendo conteúdo de séries, filmes e entretenimento online."
+        alt="Logotipo do serviço de streaming Davyflix, com letras vermelhas e fundo preto, promovendo conteúdo de séries, filmes e entretenimento online."
       />
 
       <div className="search">
@@ -43,7 +50,7 @@ const App = () => {
           onKeyDown={(e) => e.key === "Enter" && searchMovies(search)}
           onChange={(e) => setSearch(e.target.value)}
           type="text"
-          placeholder="Pesquise por filmes"
+          placeholder="Pedir pro mago pesquisar"
         />
         <img
           onClick={() => searchMovies(search)}
@@ -59,7 +66,7 @@ const App = () => {
           ))}
         </div>
       ) : (
-        <h2 className="empty"></h2>
+        <h2 className="empty">Eu pesquisei TODOS os filmes <img width="25px" height="25px" src={todos} alt="TODOS OS FILMES" srcset="" />, TODAS as séries <img width="25px" height="25px" src={todos} alt="TODAS AS SÉRIES" srcset=""/>. Mas não tinha nenhum.</h2>
       )}
 
       <Rodape link={"https://github.com/EnzoNicoletti"}>EnzoNicoletti</Rodape>  

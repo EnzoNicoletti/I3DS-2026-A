@@ -1,0 +1,61 @@
+.languageSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--bg-secondary, #f0f0f0);
+  border-radius: 0.5rem;
+}
+
+.languageSelector label {
+  font-weight: 500;
+  color: var(--text-primary, #000);
+  white-space: nowrap;
+}
+
+.select {
+  padding: 0.5rem;
+  border: 2px solid var(--border-color, #ddd);
+  border-radius: 0.4rem;
+  background-color: var(--bg-primary, #fff);
+  color: var(--text-primary, #000);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.select:hover {
+  border-color: var(--border-hover, #999);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-color, #ff0000);
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+/* Modo escuro */
+#App.dark .languageSelector {
+  background: #1a1a1a;
+}
+
+#App.dark .languageSelector label {
+  color: #e0e0e0;
+}
+
+#App.dark .select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+#App.dark .select:hover {
+  border-color: #666;
+}
+
+#App.dark .select:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+}
