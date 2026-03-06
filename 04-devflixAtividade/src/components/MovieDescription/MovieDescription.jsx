@@ -1,15 +1,40 @@
 import { useEffect, useState } from "react";
 import styles from "./MovieDescription.module.css";
 
+const translateText = async (text) => {
+  const response = await fetch(
+    `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|pt-br`
+  );
+
+  const data = await response.json();
+  return data.responseData.translatedText;
+};
+
 const MovieDescription = (props) => {
   const [movieDesc, setMovieDesc] = useState([]);
 
   useEffect(() => {
-    fetch(`${props.apiUrl}&i=${props.movieID}`)
-      .then((response) => response.json())
-      .then((data) => setMovieDesc(data))
-      .catch((error) => console.error(error));
-  }, []);
+  const fetchMovie = async () => {
+    try {
+      const response = await fetch(`${props.apiUrl}&i=${props.movieID}`);
+      const data = await response.json();
+
+      const translatedPlot = await translateText(data.Plot);
+      const translatedGenre = await translateText(data.Genre);
+
+      setMovieDesc({
+        ...data,
+        Plot: translatedPlot,
+        Genre: translatedGenre
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchMovie();
+}, []);
 
   return (
     <div className={styles.modalBackdrop} onClick={props.click}>
