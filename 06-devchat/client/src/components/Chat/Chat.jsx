@@ -1,9 +1,39 @@
 import style from './Chat.module.css'
+import { Input } from "@mui/material"
+import SendIcon from "@mui/icons-material/Send"
+import { useEffect, useState } from 'react'
 
-const Chat = () => {
+const Chat = (props) => {
+const [messageList,setMessageList] = useState([])
+
+useEffect(() => {
+    // Registra o listenr para o evento "receive_message"
+    // Toda vez que o servidor emitir esse evento, adiciona a mensagem na lista
+    props.socket.on("receive_message", (data) => {
+        setMessageList((current) => [...current, data]); // Usa função callback para garantir que pegue o estado mais recente
+    });
+
+    // Cleanup: Remover o listener quando o componente desmonta
+    // Evita vazamento de memória e listeners duplicados
+    return () => props.socket.off("receive_message");
+}, [props.socket]);
+
   return (
     <div>
-      Chat
+      <div className={style.chat_container}>
+
+        <div className={style.chat_body}>
+            {messageList.map((message,index)=>(
+                <div className={`${style.message_container} ${message.authorId === props.socket.id && style.message_mine}`} key={index}>
+                    <div className={style.message_author}>
+                        <strong>{message.author}</strong>
+                    </div>
+                    <div className={style.message_text}>{message.text}</div>
+                </div>
+            ))}
+        </div>
+
+      </div>
     </div>
   )
 }
