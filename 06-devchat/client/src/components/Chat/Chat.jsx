@@ -1,10 +1,12 @@
 import style from './Chat.module.css'
 import { Input } from "@mui/material"
 import SendIcon from "@mui/icons-material/Send"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const Chat = (props) => {
-const [messageList,setMessageList] = useState([])
+const [messageList,setMessageList] = useState([]);
+
+const messageRef = useRef();
 
 useEffect(() => {
     // Registra o listenr para o evento "receive_message"
@@ -18,6 +20,20 @@ useEffect(() => {
     return () => props.socket.off("receive_message");
 }, [props.socket]);
 
+const handleSubmit = () => {
+    const message = messageRef.current.value;
+
+    if(!message.trim()) return;
+
+    props.socket.emit("message", message);
+
+    messageRef.current.value = "";
+    messageRef.Ref.current.focus();
+};
+
+const getEnterKey = (e) => {
+    if(e.key === "Enter") handleSubmit();
+}
   return (
     <div>
       <div className={style.chat_container}>
@@ -31,6 +47,15 @@ useEffect(() => {
                     <div className={style.message_text}>{message.text}</div>
                 </div>
             ))}
+        </div>
+        <div className={style.chat_footer}>
+            <Input inputRef={messageRef} placeholder="Mensagem" onKeyDown={(e)=> getEnterKey(e)} fullWidth/>
+
+            <SendIcon
+            sx={{ m: 1, cursor: "pointer" }}
+            style={{ color: "#129d93" }}
+            onClick={() => handleSubmit()}
+          />
         </div>
 
       </div>
